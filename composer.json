@@ -1,0 +1,15 @@
+{
+  "name": "ashkanfekridev/radio-javan_downloader",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "ashkan fekri",
+      "email": "ashkanfekridev@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Ashkanfekridev\\": "src/"
+    }
+  }
+}
