@@ -1,22 +1,32 @@
 <?php
 
 namespace Ashkanfekridev;
+
+use src\Media\Video;
+
 class RadioJavan
 {
 
     private $response;
 
+    private $mediaObjects = [
+        'video' => Video::class
+    ];
+
     public function __construct(
         private $url,
         private $options = [],
-                $dev = false
-    )
-    {
+        $dev = false
+    ) {
         if ($dev)
             return;
         $this->request();
-        
+
         $this->responseNormalize();
+
+        //if (array_key_exists($this->getType(), $this->mediaObjects)){
+        //    return new $this->mediaObjects[$this->getType()]($this);
+        //}
     }
 
     private function request(): void
@@ -44,6 +54,10 @@ class RadioJavan
         ], ['', ''], $this->response[0]);
 
         $this->response = json_decode($this->response);
+
+        $fp = fopen('clone.json', 'w');
+        fwrite($fp, json_encode($this->response));
+        fclose($fp);
     }
 
     public function setResponse($r)
@@ -136,13 +150,11 @@ class RadioJavan
     public function getPlayListTitle()
     {
         return $this->response->props->pageProps->playlist->title;
-
     }
 
     public function getPlayListItems()
     {
         return $this->response->props->pageProps->playlist->items;
-
     }
 
 
@@ -152,45 +164,43 @@ class RadioJavan
     }
     public function getArtistAlbums()
     {
-return $this->getArtist()->albums;
+        return $this->getArtist()->albums;
     }
     public function getArtistMp3s()
     {
-return $this->getArtist()->mp3s;
+        return $this->getArtist()->mp3s;
     }
     public function getArtistVideos()
     {
-return $this->getArtist()->videos;
+        return $this->getArtist()->videos;
     }
 
     public function getArtistPodcasts()
     {
-return $this->getArtist()->podcasts;
+        return $this->getArtist()->podcasts;
     }
 
     public function getArtistPlaylists()
     {
-return $this->getArtist()->playlists;
+        return $this->getArtist()->playlists;
     }
     public function getArtistPhotos()
     {
-return $this->getArtist()->photos;
+        return $this->getArtist()->photos;
     }
 
     public function getArtistPhoto_thumb()
     {
-return $this->getArtist()->photo_thumb;
+        return $this->getArtist()->photo_thumb;
     }
 
     public function getArtistArtist_farsi()
     {
-return $this->getArtist()->artist_farsi;
+        return $this->getArtist()->artist_farsi;
     }
 
     public function getArtistName()
     {
-return $this->getArtist()->name;
+        return $this->getArtist()->name;
     }
-
-
 }
