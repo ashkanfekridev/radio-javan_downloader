@@ -6,7 +6,7 @@ class RadioJavan
 
     public function __construct(
         private $url,
-                $dev = false
+        private $option = []
     )
     {
         $this->request();
@@ -21,7 +21,8 @@ class RadioJavan
         curl_setopt($ch, CURLOPT_COOKIESESSION, true);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36");
-        curl_setopt($ch, CURLOPT_PROXY, 'socks5h://127.0.0.1:1080');
+        if (isset($this->option['proxy']))
+            curl_setopt($ch, CURLOPT_PROXY, $this->option['proxy']);
         curl_setopt($ch, CURLOPT_COOKIESESSION, true);
         curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookie.txt');
         $this->response = curl_exec($ch);
@@ -102,10 +103,13 @@ class RadioJavan
     }
 }
 
+$option['proxy'] = 'socks5h://127.0.0.1:1080';
+//$option = [];
+
 
 if (isset($_GET['url'])) {
     try {
-        $radio = new RadioJavan($_GET['url']);
+        $radio = new RadioJavan($_GET['url'],$option);
         $response = ($radio->getMediaType());
 
         if ($radio->getMediaType() === '') {

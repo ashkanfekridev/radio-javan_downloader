@@ -6,12 +6,12 @@ composer
 
  # install
 ```
-https://github.com/ashkanfekridev/radio-javan_downloader.git && cd radio-javan_downloader && composer i
+https://github.com/ashkanfekridev/radio-javan_downloader.git && cd radio-javan_downloader
 ```
 
 
 # موارد مهم
-- اگر از پروکسی استفاده میکنید حتما خط 7 از فایل index.php رو ادیت کنید در غیر این صورت خط 7 رو کامنت و خط 8 رو از کامنت خارج کنید
+- اگر از پروکسی استفاده میکنید حتما خط 106 از فایل index.php رو ادیت کنید در غیر این صورت خط 106 رو کامنت و خط 107 رو از کامنت خارج کنید
 
 
 # run
@@ -19,5 +19,7 @@ https://github.com/ashkanfekridev/radio-javan_downloader.git && cd radio-javan_d
 ```
 php -S localhost:8000 -f index.php
 ```
+
+
 
 
